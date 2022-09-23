@@ -4,6 +4,8 @@ import PostFeed from '../components/PostFeed';
 import Loader from '../components/Loader';
 import { useState } from 'react';
 import { firestore, postToJSON, fromMillis } from '../lib/firebase';
+import Metatags from "../components/Metatags";
+
 
 // Max post to query per page
 const LIMIT = 1
@@ -60,6 +62,7 @@ export default function Home(props) {
   
   return (
     <main>
+      <Metatags title="home" />
       <PostFeed posts={posts} />
 
       {!loading && !postsEnd && <button onClick={getMorePosts}>Load more</button>}
