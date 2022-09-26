@@ -2,6 +2,7 @@ import styles from '../../styles/Post.module.css';
 import PostContent from '../../components/PostContent';
 import AuthCheck from '../../components/AuthCheck'
 import HeartButton from "../../components/HeartButton";
+import Link from 'next/link'
 import { firestore, getUserWithUsername, postToJSON } from '../../lib/firebase';
 import { useDocumentData } from 'react-firebase-hooks/firestore';
 
@@ -129,7 +130,13 @@ export default function Post(props) {
           <strong>{post.heartCount || 0} 🤍</strong>
         </p>
 
-        <AuthCheck >
+        <AuthCheck
+          fallback={
+            <Link href="/enter">
+              <button>💗 Sign Up</button>
+            </Link>
+          }
+        >
           <HeartButton postRef={postRef}></HeartButton>
         </AuthCheck>
 
